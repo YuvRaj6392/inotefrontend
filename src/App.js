@@ -3,8 +3,10 @@ import { BrowserRouter as Router,Routes,Route } from 'react-router-dom'
 import Home from './components/Home'
 import Navbar from './components/Navbar'
 import About from './components/About'
+import NoteState from './context/notes/NotesStates'
 export default function App() {
   return (
+    <NoteState>
     <Router>
       <Navbar />
       <Routes>
@@ -13,5 +15,6 @@ export default function App() {
       </Routes>
       
     </Router>
+    </NoteState>
   )
 }
