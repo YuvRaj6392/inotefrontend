@@ -8,12 +8,14 @@ export default function App() {
   return (
     <NoteState>
     <Router>
-      <Navbar />
+    <Navbar />
+    <div className="container">
+    
       <Routes>
         <Route exact path='/' element={<Home />}   />
         <Route exact path='/about' element={<About />}   />
       </Routes>
-      
+    </div> 
     </Router>
     </NoteState>
   )
