@@ -24,6 +24,36 @@ const NoteState=(props)=>{
         "createdAt": "2022-11-04T18:11:37.068Z",
         "updatedAt": "2022-11-04T18:11:37.068Z",
         "__v": 0
+      },
+      {
+        "_id": "636555d9f181f0e226c66994",
+        "user": "6365555af181f0e226c6698f",
+        "title": "tuesday Notes",
+        "description": "It was a nice day on tuesday",
+        "tag": "General",
+        "createdAt": "2022-11-04T18:11:37.068Z",
+        "updatedAt": "2022-11-04T18:11:37.068Z",
+        "__v": 0
+      },
+      {
+        "_id": "636555d9f181f0e226c66994",
+        "user": "6365555af181f0e226c6698f",
+        "title": "tuesday Notes",
+        "description": "It was a nice day on tuesday",
+        "tag": "General",
+        "createdAt": "2022-11-04T18:11:37.068Z",
+        "updatedAt": "2022-11-04T18:11:37.068Z",
+        "__v": 0
+      },
+      {
+        "_id": "636555d9f181f0e226c66994",
+        "user": "6365555af181f0e226c6698f",
+        "title": "tuesday Notes",
+        "description": "It was a nice day on tuesday",
+        "tag": "General",
+        "createdAt": "2022-11-04T18:11:37.068Z",
+        "updatedAt": "2022-11-04T18:11:37.068Z",
+        "__v": 0
       }
     ]
   const [notes,setNotes]=useState(notesInitial)
