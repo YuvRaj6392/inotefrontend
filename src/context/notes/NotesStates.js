@@ -26,7 +26,7 @@ const NoteState=(props)=>{
         "__v": 0
       },
       {
-        "_id": "636555d9f181f0e226c66994",
+        "_id": "636555d9f181f0e226c669934",
         "user": "6365555af181f0e226c6698f",
         "title": "tuesday Notes",
         "description": "It was a nice day on tuesday",
@@ -36,7 +36,7 @@ const NoteState=(props)=>{
         "__v": 0
       },
       {
-        "_id": "636555d9f181f0e226c66994",
+        "_id": "636555d9f181f0e2326c66994",
         "user": "6365555af181f0e226c6698f",
         "title": "tuesday Notes",
         "description": "It was a nice day on tuesday",
@@ -46,7 +46,7 @@ const NoteState=(props)=>{
         "__v": 0
       },
       {
-        "_id": "636555d9f181f0e226c66994",
+        "_id": "636555d9f1381f0e226c636994",
         "user": "6365555af181f0e226c6698f",
         "title": "tuesday Notes",
         "description": "It was a nice day on tuesday",

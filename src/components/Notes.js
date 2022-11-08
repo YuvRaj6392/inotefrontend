@@ -11,7 +11,7 @@ export default function Notes() {
     <div style={{display:'flex'}}>
       {
   context.notes.map((element)=>{
-    return <div>
+    return <div key={element._id}>
       <NoteItem note={element} />
     </div>
   })
