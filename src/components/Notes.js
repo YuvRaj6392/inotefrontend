@@ -1,21 +1,26 @@
 import React from 'react'
 import { useContext } from 'react'
 import noteContext from '../context/notes/NotesContext';
-import NoteState from '../context/notes/NotesStates';
+import AddNote from './AddNote';
 import NoteItem from './NoteItem';
 export default function Notes() {
     const context=useContext(noteContext);
+    const {notes}=context
   console.log(context.notes)
  
   return (
-    <div style={{display:'flex'}}>
+    <>
+  <AddNote />
+  
+    <div style={{display:'flex',flexWrap:'wrap'}}>
       {
-  context.notes.map((element)=>{
+   notes.map((element)=>{
     return <div key={element._id}>
       <NoteItem note={element} />
     </div>
   })
 }
     </div>
+    </>
   )
 }
