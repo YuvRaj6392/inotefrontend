@@ -28,7 +28,7 @@ const NoteState=(props)=>{
       {
         "_id": "636555d9f181f0e226c669934",
         "user": "6365555af181f0e226c6698f",
-        "title": "tuesday Notes",
+        "title": "wednesday Notes",
         "description": "It was a nice day on tuesday",
         "tag": "General",
         "createdAt": "2022-11-04T18:11:37.068Z",
@@ -38,7 +38,7 @@ const NoteState=(props)=>{
       {
         "_id": "636555d9f181f0e2326c66994",
         "user": "6365555af181f0e226c6698f",
-        "title": "tuesday Notes",
+        "title": "thurday Notes",
         "description": "It was a nice day on tuesday",
         "tag": "General",
         "createdAt": "2022-11-04T18:11:37.068Z",
@@ -48,7 +48,7 @@ const NoteState=(props)=>{
       {
         "_id": "636555d9f1381f0e226c636994",
         "user": "6365555af181f0e226c6698f",
-        "title": "tuesday Notes",
+        "title": "friday Notes",
         "description": "It was a nice day on tuesday",
         "tag": "General",
         "createdAt": "2022-11-04T18:11:37.068Z",
@@ -72,19 +72,38 @@ const NoteState=(props)=>{
    }
 
     //edit note
-    const editNote=()=>{
+    const editNote=(title,description,tag)=>{
 
     }
 
     //delete note
-    const deleteNode=()=>{
-
+    const deleteNode=(_id)=>{
+      //TODO Backend call!
+      console.log('delete the node with'+_id);
+      var newNote=[];
+      for(var i=0;i<notes.length;i++)
+      {
+        if(notes[i]._id===_id)
+        {
+          continue;
+        }
+        else
+        {
+          newNote.push(notes[i])
+        }
+      }
+      console.log(newNote)
+      setNotes(newNote);
+      
     }
+
+
+    
 
 
   
     return (
-<noteContext.Provider value={{notes,addNote}} >
+<noteContext.Provider value={{notes,addNote,deleteNode}} >
         {props.children}
     </noteContext.Provider>
     )

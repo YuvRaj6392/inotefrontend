@@ -35,20 +35,20 @@ export default function AddNote() {
     <form className='mb-3'>
   <div className="mb-3">
     <label  className="form-label">Title</label>
-    <input type="text" className="title" id="title"   onChange={(e)=>{
+    <input type="text" className="form-control" id="title"   onChange={(e)=>{
       setTitle(e.target.value)
     }}/>
    
   </div>
   <div className="mb-3">
     <label className="form-label">Description</label>
-    <input type="text" className="Description" id="Description" onChange={(e)=>{
+    <input type="text" className="form-control" id="Description" onChange={(e)=>{
       setDescription(e.target.value)
     }}/>
   </div>
   <div className="mb-3">
     <label  className="form-label">Tag</label>
-    <input type="text" className="tag" id="tag" onChange={(e)=>{
+    <input type="text" className="form-control" id="tag" onChange={(e)=>{
       setTag(e.target.value)
     }}/>
   </div>
