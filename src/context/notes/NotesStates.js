@@ -3,65 +3,54 @@
 import { useState } from 'react'
 import noteContext from './NotesContext'
 const NoteState=(props)=>{
-  const notesInitial=
-     [
-      {
-        "_id": "636555c8f181f0e226c66992",
-        "user": "6365555af181f0e226c6698f",
-        "title": "Monday Notes",
-        "description": "It was a nice day today",
-        "tag": "General",
-        "createdAt": "2022-11-04T18:11:20.583Z",
-        "updatedAt": "2022-11-04T18:11:20.583Z",
-        "__v": 0
-      },
-      {
-        "_id": "636555d9f181f0e226c66994",
-        "user": "6365555af181f0e226c6698f",
-        "title": "tuesday Notes",
-        "description": "It was a nice day on tuesday",
-        "tag": "General",
-        "createdAt": "2022-11-04T18:11:37.068Z",
-        "updatedAt": "2022-11-04T18:11:37.068Z",
-        "__v": 0
-      },
-      {
-        "_id": "636555d9f181f0e226c669934",
-        "user": "6365555af181f0e226c6698f",
-        "title": "wednesday Notes",
-        "description": "It was a nice day on tuesday",
-        "tag": "General",
-        "createdAt": "2022-11-04T18:11:37.068Z",
-        "updatedAt": "2022-11-04T18:11:37.068Z",
-        "__v": 0
-      },
-      {
-        "_id": "636555d9f181f0e2326c66994",
-        "user": "6365555af181f0e226c6698f",
-        "title": "thurday Notes",
-        "description": "It was a nice day on tuesday",
-        "tag": "General",
-        "createdAt": "2022-11-04T18:11:37.068Z",
-        "updatedAt": "2022-11-04T18:11:37.068Z",
-        "__v": 0
-      },
-      {
-        "_id": "636555d9f1381f0e226c636994",
-        "user": "6365555af181f0e226c6698f",
-        "title": "friday Notes",
-        "description": "It was a nice day on tuesday",
-        "tag": "General",
-        "createdAt": "2022-11-04T18:11:37.068Z",
-        "updatedAt": "2022-11-04T18:11:37.068Z",
-        "__v": 0
-      },
-      
-    ]
+  const host="http://localhost:8080"
+  const notesInitial=[]
 
     const [notes,setNotes]=useState(notesInitial)
-
-   const addNote=(note)=>
+    const getNotes=async ()=>
    {
+    console.log('I have been called!')
+    //api call
+    const response = await fetch(`http://localhost:8080/api/notes?id=6373d041a5d6f8de6a11656c`, {
+      method: 'GET', 
+      headers: {
+        'Content-Type': 'application/json',
+        "x-access-token":'eyJhbGciOiJIUzI1NiJ9.NjM3M2QwNDFhNWQ2ZjhkZTZhMTE2NTZj.xrafRUjDQXrNzMnxpHSxhbflj1ONOjfRZxmqBojpBV8'
+      },
+    });
+    const json=await(response.json())
+
+    console.log(json.message);
+    setNotes(json.message) 
+    
+    
+   
+ 
+    
+   }
+
+    
+
+   //add a note 
+   const addNote=async (note)=>
+   {
+    //api call
+    const response = await fetch(`http://localhost:8080/api/notes`, {
+      method: 'POST', 
+      headers: {
+        'Content-Type': 'application/json',
+        "x-access-token":'eyJhbGciOiJIUzI1NiJ9.NjM3M2QwNDFhNWQ2ZjhkZTZhMTE2NTZj.xrafRUjDQXrNzMnxpHSxhbflj1ONOjfRZxmqBojpBV8'
+      },
+     
+      body: JSON.stringify({
+        user:note.user,
+        title:note.title,
+        description:note.description
+      })
+    });
+
+
+    console.log(response.json()) 
     console.log("called!")
     console.log(notes)
     const noter=notes.concat(note);
@@ -72,8 +61,36 @@ const NoteState=(props)=>{
    }
 
     //edit note
-    const editNote=(title,description,tag)=>{
+    const editNote=async (id,title,description,tag)=>{
+      //API call
+      
+      const response = await fetch(`${host}/api/notes/6373d0b2a5d6f8de6a116571`, {
+        method: 'POST', 
+        headers: {
+          'Content-Type': 'application/json',
+          "x-access-token":'eyJhbGciOiJIUzI1NiJ9.NjM3M2QwNDFhNWQ2ZjhkZTZhMTE2NTZj.xrafRUjDQXrNzMnxpHSxhbflj1ONOjfRZxmqBojpBV8'
+        },
+       
+        body: JSON.stringify({
+          title:title,
+          description:description,
+          tag:tag
+        })
+      });
+      console.log(response.json()) 
+      
 
+      //Logic to edit
+      for (let index = 0; index < notes.length; index++) {
+        const element = notes[index];
+        if(element._id===id)
+        {
+          element.title=title;
+          element.description=description;
+          element.tag=tag;
+        }
+        
+      }
     }
 
     //delete note
@@ -103,7 +120,7 @@ const NoteState=(props)=>{
 
   
     return (
-<noteContext.Provider value={{notes,addNote,deleteNode}} >
+<noteContext.Provider value={{notes,addNote,deleteNode,getNotes}} >
         {props.children}
     </noteContext.Provider>
     )

@@ -14,14 +14,11 @@ export default function AddNote() {
       e.preventDefault();
       let dumNote={
         
-          "_id": "63612551125d9f1381f0e226c636994",
-          "user": "636551255af181f0e226c6698f",
-          "title": "Game Notes",
-          "description": "It was a nice day on tuesday",
-          "tag": "General",
-          "createdAt": "2022-11-04T18:11:37.068Z",
-          "updatedAt": "2022-11-04T18:11:37.068Z",
-          "__v": 0
+          "_id": "63612551125d9f1336994",
+          "user": "6373d041a5d6f8de6a11656c",
+          "title": title,
+          "description": description,
+          "tag": tag,
         }
       
       console.log(dumNote)
