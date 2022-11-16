@@ -63,9 +63,9 @@ const NoteState=(props)=>{
     //edit note
     const editNote=async (id,title,description,tag)=>{
       //API call
-      
-      const response = await fetch(`${host}/api/notes/6373d0b2a5d6f8de6a116571`, {
-        method: 'POST', 
+      console.log('edit note have been called!')
+      const response = await fetch(`${host}/api/notes/${id}`, {
+        method: 'PUT', 
         headers: {
           'Content-Type': 'application/json',
           "x-access-token":'eyJhbGciOiJIUzI1NiJ9.NjM3M2QwNDFhNWQ2ZjhkZTZhMTE2NTZj.xrafRUjDQXrNzMnxpHSxhbflj1ONOjfRZxmqBojpBV8'
@@ -78,6 +78,7 @@ const NoteState=(props)=>{
         })
       });
       console.log(response.json()) 
+      await getNotes()
       
 
       //Logic to edit
@@ -94,23 +95,21 @@ const NoteState=(props)=>{
     }
 
     //delete note
-    const deleteNode=(_id)=>{
+    const deleteNode= async (_id)=>{
       //TODO Backend call!
-      console.log('delete the node with'+_id);
-      var newNote=[];
-      for(var i=0;i<notes.length;i++)
-      {
-        if(notes[i]._id===_id)
-        {
-          continue;
-        }
-        else
-        {
-          newNote.push(notes[i])
-        }
-      }
-      console.log(newNote)
-      setNotes(newNote);
+      const response = await fetch(`${host}/api/notes/${_id}`, {
+        method: 'DELETE', 
+        headers: {
+          'Content-Type': 'application/json',
+          "x-access-token":'eyJhbGciOiJIUzI1NiJ9.NjM3M2QwNDFhNWQ2ZjhkZTZhMTE2NTZj.xrafRUjDQXrNzMnxpHSxhbflj1ONOjfRZxmqBojpBV8'
+        },
+      });
+      const json=await response.json();
+      console.log(json.data)
+      await getNotes()
+
+
+
       
     }
 
@@ -120,7 +119,7 @@ const NoteState=(props)=>{
 
   
     return (
-<noteContext.Provider value={{notes,addNote,deleteNode,getNotes}} >
+<noteContext.Provider value={{notes,addNote,deleteNode,getNotes,editNote}} >
         {props.children}
     </noteContext.Provider>
     )
