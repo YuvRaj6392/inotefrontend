@@ -5,10 +5,8 @@ import noteContext from "../context/notes/NotesContext";
 import AddNote from "./AddNote";
 import NoteItem from "./NoteItem";
 export default function Notes() {
-    const [etitle,setTitle]=useState("");
-    const [edescription,setDescription]=useState("");
-    const [etag,setTag]=useState("General");
    
+   const [note,setNote]=useState({etitle:"",edescription:"",etag:""})
   const ref=useRef(null)
   const context = useContext(noteContext);
   const { notes, getNotes,editNote } = context;
@@ -16,19 +14,26 @@ export default function Notes() {
   useEffect(() => {
     console.log("hello!");
     getNotes();
+    //eslint-disable-next
   }, []);
   
 const [noteId,setNoteId]=useState('');
 
-  const updateNote = (note) => {
+  const updateNote = (currentNote) => {
     ref.current.click();
-    setNoteId(note._id);
+    setNoteId(currentNote._id)
+    setNote({etitle:currentNote.title,edescription:currentNote.description,etag:currentNote.tag})
     
     
   };
 
   const updateModal=()=>{
-    editNote(noteId,etitle,edescription,etag)
+    editNote(noteId,note.etitle,note.edescription,note.etag)
+  }
+
+
+  const onChange=(e)=>{
+    setNote({...note,[e.target.name]:e.target.value})
   }
 
   
@@ -36,44 +41,38 @@ const [noteId,setNoteId]=useState('');
     <>
       <AddNote />
       
-<button ref={ref} type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style={{display:'none'}}>
+<button ref={ref} type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style={{display:'none'}}>
   Launch demo modal 
 </button>
 
 
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+<div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div className="modal-dialog">
+    <div className="modal-content">
+      <div className="modal-header">
+        <h1 className="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
+      <div className="modal-body">
       <form className='mb-3'>
   <div className="mb-3">
     <label  className="form-label">Title</label>
-    <input type="text" className="form-control" id="title"     onChange={(e)=>{
-      setTitle(e.target.value)
-    }}/>
+    <input type="text" className="form-control"  name="etitle" value={note.etitle}     onChange={onChange}/>
    
   </div>
   <div className="mb-3">
     <label className="form-label">Description</label>
-    <input type="text" className="form-control" id="Description" onChange={(e)=>{
-      setDescription(e.target.value)
-    }}/>
+    <input type="text" className="form-control" id="eDescription"  name="edescription" value={note.edescription}     onChange={onChange}/>
   </div>
   <div className="mb-3">
     <label  className="form-label">Tag</label>
-    <input type="text" className="form-control" id="tag"  onChange={(e)=>{
-      setTag(e.target.value)
-    }}/>
+    <input type="text" className="form-control" id="etag"  name="etag"   value={note.etag}   onChange={onChange}/>
   </div>
   </form>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" onClick={updateModal}>update note</button>
+      <div className="modal-footer">
+        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" className="btn btn-primary" onClick={updateModal}>update note</button>
       </div>
     </div>
   </div>
