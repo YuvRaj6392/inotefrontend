@@ -12,6 +12,7 @@ export default function Notes() {
    
    
   const ref=useRef(null)
+  const refclose=useRef(null)
   const context = useContext(noteContext);
   const { notes, getNotes,editNote } = context;
   console.log(context.notes);
@@ -35,6 +36,7 @@ const [noteId,setNoteId]=useState('');
 
   const updateModal=()=>{
     editNote(noteId,etitle,edescription,etag)
+    refclose.current.click();
   }
 
   
@@ -65,20 +67,20 @@ const [noteId,setNoteId]=useState('');
   </div>
   <div className="mb-3">
     <label className="form-label">Description</label>
-    <input type="text" className="form-control" id="edescription" name="edescription" onChange={(e)=>{
+    <input type="text" className="form-control" id="edescription" name="edescription" value={edescription} onChange={(e)=>{
       seteDescription(e.target.value)
     }}/>
   </div>
   <div className="mb-3">
     <label  className="form-label">Tag</label>
-    <input type="text" className="form-control" id="etag" name="etag"  onChange={(e)=>{
+    <input type="text" className="form-control" id="etag" name="etag" value={etag}  onChange={(e)=>{
       seteTag(e.target.value)
     }}/>
   </div>
   </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary" ref={refclose} data-bs-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary" onClick={updateModal}>update note</button>
       </div>
     </div>

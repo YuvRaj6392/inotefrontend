@@ -18,6 +18,7 @@ export default function NoteItem(props) {
           <p className="card-text">
            {props.note.description}
           </p>
+          <p className="lead">{props.note.tag}</p>
          
         </div>
       </div>
