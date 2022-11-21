@@ -9,7 +9,7 @@ const NoteState=(props)=>{
     const [notes,setNotes]=useState(notesInitial)
     const getNotes=async ()=>
    {
-    console.log('I have been called!')
+    
     //api call
     const response = await fetch(`http://localhost:8080/api/notes?id=6373d041a5d6f8de6a11656c`, {
       method: 'GET', 
@@ -20,7 +20,7 @@ const NoteState=(props)=>{
     });
     const json=await(response.json())
 
-    console.log(json.message);
+    
     setNotes(json.message) 
     
     
@@ -50,12 +50,10 @@ const NoteState=(props)=>{
     });
 
 
-    console.log(response.json()) 
-    console.log("called!")
-    console.log(notes)
+  
     const noter=notes.concat(note);
     setNotes(noter)
-   
+    getNotes()
  
     
    }
@@ -63,7 +61,7 @@ const NoteState=(props)=>{
     //edit note
     const editNote=async (id,title,description,tag)=>{
       //API call
-      console.log('edit note have been called!')
+      
       const response = await fetch(`${host}/api/notes/${id}`, {
         method: 'PUT', 
         headers: {
@@ -77,7 +75,7 @@ const NoteState=(props)=>{
           tag:tag
         })
       });
-      console.log(response.json()) 
+      
       await getNotes()
       
 
@@ -105,7 +103,7 @@ const NoteState=(props)=>{
         },
       });
       const json=await response.json();
-      console.log(json.data)
+      
       await getNotes()
 
 
