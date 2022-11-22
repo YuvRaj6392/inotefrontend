@@ -45,7 +45,8 @@ const NoteState=(props)=>{
       body: JSON.stringify({
         user:note.user,
         title:note.title,
-        description:note.description
+        description:note.description,
+        tag:note.tag
       })
     });
 
