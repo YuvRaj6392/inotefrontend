@@ -9,9 +9,10 @@ const NoteState=(props)=>{
     const [notes,setNotes]=useState(notesInitial)
     const getNotes=async ()=>
    {
-    
+    let user_id=localStorage.getItem('id');
+    console.log(user_id);
     //api call
-    const response = await fetch(`http://localhost:8080/api/notes?id=6373d041a5d6f8de6a11656c`, {
+    const response = await fetch(`http://localhost:8080/api/notes?id=${user_id}`, {
       method: 'GET', 
       headers: {
         'Content-Type': 'application/json',

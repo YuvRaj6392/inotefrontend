@@ -1,9 +1,10 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
     const [email,setEmail]=useState("");
     const [password,setPassword]=useState("")
-
+  let history=useNavigate();
     const handleSubmit= async (e)=>{
         e.preventDefault();
         const response = await fetch(`http://localhost:8080/api/auth/login`, {
@@ -18,6 +19,20 @@ export default function Login() {
           });
           const json=await(response.json());
           console.log(json)
+          if(json.success===true)
+          {
+            //save the auth token and redirect
+
+            localStorage.setItem('token',json.token);
+            localStorage.setItem('id',json.id)
+            history('/')
+          }
+          else
+          {
+           alert(json.error)
+          }
+          await setEmail("");
+          await setPassword("")
     }
   return (
     <div>
