@@ -9,20 +9,20 @@ const NoteState=(props)=>{
     const [notes,setNotes]=useState(notesInitial)
     const getNotes=async ()=>
    {
-    let user_id=localStorage.getItem('id');
-    console.log(user_id);
+    const _id=localStorage.getItem('id');
+    console.log(_id);
     //api call
-    const response = await fetch(`http://localhost:8080/api/notes?id=${user_id}`, {
+    const response = await fetch(`http://localhost:8080/api/notes?id=${_id}`, {
       method: 'GET', 
       headers: {
         'Content-Type': 'application/json',
         "x-access-token":'eyJhbGciOiJIUzI1NiJ9.NjM3M2QwNDFhNWQ2ZjhkZTZhMTE2NTZj.xrafRUjDQXrNzMnxpHSxhbflj1ONOjfRZxmqBojpBV8'
-      },
+      }
     });
     const json=await(response.json())
 
     
-    setNotes(json.message) 
+    await setNotes(json.message) 
     
     
    

@@ -13,10 +13,11 @@ export default function AddNote() {
     const  handleClick=  (e)=>{
 
       e.preventDefault();
+      const user=localStorage.getItem('id');
       let dumNote={
         
           
-          "user": "6373d041a5d6f8de6a11656c",
+          "user": user,
           "title": title,
           "description": description,
           "tag": tag,
