@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function Signup() {
+export default function Signup(props) {
     const [email,setEmail]=useState("");
     const [password,setPassword]=useState("");
     const [name,setName]=useState("")
@@ -24,10 +24,11 @@ export default function Signup() {
           if(json.success===true)
           {
             history('/login');
+            props.showAlert("Account has been created successfully.Kindly login!")
           }
           else
           {
-            alert(json.error)
+            props.showAlert(json.error,"danger")
           }
           await setEmail("");
           await setPassword("")

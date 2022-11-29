@@ -107,6 +107,7 @@ const NoteState=(props)=>{
       const json=await response.json();
       
       await getNotes()
+      props.showAlert("Note has been deleted!","success")
 
 
 

@@ -4,6 +4,7 @@ import { useContext } from 'react'
 import noteContext from '../context/notes/NotesContext';
 export default function AddNote() {
     const context=useContext(noteContext);
+    // eslint-disable-next-line
     const  {notes,addNote}=context
     const [title,setTitle]=useState("");
     const [description,setDescription]=useState("");
@@ -27,7 +28,7 @@ export default function AddNote() {
      addNote(dumNote)
      setTitle("");
      setDescription("")
-     setTag("")
+     setTag("General")
     
      
     }

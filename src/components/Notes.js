@@ -4,8 +4,8 @@ import { useContext } from "react";
 import noteContext from "../context/notes/NotesContext";
 import AddNote from "./AddNote";
 import NoteItem from "./NoteItem";
-export default function Notes() {
-   
+export default function Notes(props) {
+   const {showAlert}=props
     const [etitle,seteTitle]=useState("");
     const [edescription,seteDescription]=useState("");
     const [etag,seteTag]=useState("General");
@@ -37,7 +37,10 @@ const [noteId,setNoteId]=useState('');
   const updateModal=()=>{
     editNote(noteId,etitle,edescription,etag)
     refclose.current.click();
+    showAlert("Fields have been updated!","success")
   }
+
+  
 
   
   return (
@@ -91,7 +94,7 @@ const [noteId,setNoteId]=useState('');
         {notes.map((element) => {
           return (
             <div key={element._id}>
-              <NoteItem updateNote={updateNote} note={element} />
+              <NoteItem updateNote={updateNote} note={element}  />
             </div>
           );
         })}
